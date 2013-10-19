@@ -4,7 +4,7 @@
 }
 
 .gummy-inner-wrap {
-  overflow: scroll;
+  overflow-y: scroll;
   position: relative;
 }
 
@@ -13,4 +13,15 @@
   top: 0;
   left: 0;
   z-index: 1000;
+}
+
+/* Scrollbar width detection snippet from David Walsh */
+/* http://davidwalsh.name/detect-scrollbar-width      */
+
+.scrollbar-measure {
+  width: 100px;
+  height: 100px;
+  overflow: scroll;
+  position: absolute;
+  top: -9999px;
 }
