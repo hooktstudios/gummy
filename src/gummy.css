@@ -1,0 +1,8 @@
+.gummy-wrap {
+  overflow: scroll;
+}
+
+.gummy-head {
+  position: fixed;
+  z-index: 1000;
+}

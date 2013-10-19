@@ -1,0 +1,31 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.wrap {
+  margin: 0 auto;
+  width: 700px;
+}
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #ccc;
+  padding: .5em;
+}
+
+th {
+  background-color: #eee;
+  font-weight: bold;
+}
+
+.gummy-wrap {
+  height: 500px;
+  width: 100%;
+}
