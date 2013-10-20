@@ -6,7 +6,7 @@
 
 .wrap {
   margin: 0 auto;
-  width: 700px;
+  width: 900px;
 }
 
 table {
@@ -29,7 +29,7 @@ thead th { white-space: nowrap; }
 
 .gummy-wrap {
   border-bottom: 1px solid #ccc;
-  height: 525px;
+  height: 550px;
   width: 100%;
 }
 

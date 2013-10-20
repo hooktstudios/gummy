@@ -21,6 +21,8 @@ $(function(){
 
   Gummy.prototype = {
     init: function() {
+      this.$wrap.addClass('gummy-wrap');
+
       this.tableWidth = this.$table.outerWidth();
       this.wrapHeight = this.$wrap.outerHeight();
       this.wrapWidth = this.$wrap.outerWidth();
@@ -150,7 +152,9 @@ $(function(){
     }
   }
 
-  new Gummy($('.gummy-wrap'), {
+  new Gummy($('.demo-1'));
+
+  new Gummy($('.demo-2'), {
     gummyColumn: true
   });
 })
