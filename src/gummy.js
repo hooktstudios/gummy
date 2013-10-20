@@ -62,7 +62,7 @@ $(function(){
       if(this.scrollbarWidth > 0) {
         this.$gummyHead.find('tr').append($('<th class="gummy-spacer"></th>'));
         this.$gummyHead.find('.gummy-spacer').css({
-          width: this.scrollbarWidth + 'px'
+          width: this.scrollbarWidth
         })
       }
 
@@ -91,7 +91,7 @@ $(function(){
 
       this.$gummyColumn.css({
         top: this.theadHeight,
-        width: (this.columnWidth + this.columnBorderWidth) + 'px'
+        width: this.columnWidth + this.columnBorderWidth
       })
 
       this.$wrap.append(this.$gummyColumn);
@@ -101,7 +101,6 @@ $(function(){
              - this.headerBorderWidth
              - this.initialPadding.left
              - this.initialPadding.right
-             + 'px'
       })
       this.$gummyHead.find('th').first().append(spacer);
 
@@ -130,11 +129,11 @@ $(function(){
           leftOffset = -this.$innerWrap.scrollLeft();
 
       this.$gummyColumn.css({
-        top: (topOffset + this.theadHeight) + 'px'
+        top: topOffset + this.theadHeight
       })
 
       this.$gummyHead.css({
-        left: leftOffset + 'px'
+        left: leftOffset
       })
     },
     // Scrollbar width detection snippet from David Walsh
