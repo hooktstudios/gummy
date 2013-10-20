@@ -4,7 +4,7 @@
 }
 
 .gummy-inner-wrap {
-  overflow-y: scroll;
+  overflow: scroll;
   position: relative;
 }
 
@@ -13,6 +13,19 @@
   top: 0;
   left: 0;
   z-index: 1000;
+}
+
+.gummy-column {
+  position: absolute;
+  left: 0;
+  z-index: 1000;
+}
+
+.gummy-corner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2000;
 }
 
 /* Scrollbar width detection snippet from David Walsh */

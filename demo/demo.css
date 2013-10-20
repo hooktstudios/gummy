@@ -18,6 +18,7 @@ table {
 td, th {
   border: 1px solid #ccc;
   padding: .5em;
+  min-width: 200px;
 }
 
 th {
@@ -26,6 +27,12 @@ th {
 }
 
 .gummy-wrap {
-  height: 500px;
+  border-bottom: 1px solid #ccc;
+  height: 525px;
   width: 100%;
+}
+
+.gummy-corner {
+  border: 1px solid #ccc;
+  background-color: #eee;
 }

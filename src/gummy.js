@@ -1,12 +1,20 @@
 $(function(){
-  function Gummy($wrap){
+  function Gummy($wrap, options){
     if(!$wrap) return;
+
+    this.defaults = {
+      gummyColumn: false
+    }
+
+    this.opts = $.extend(this.defaults, options);
 
     this.$wrap = $wrap;
     this.$table = $wrap.find('.gummy-table');
     this.$thead = this.$table.find('thead');
     this.$tbody = this.$table.find('tbody');
     this.$lastHeader = this.$thead.find('th').last();
+    this.$tbodyRows = this.$tbody.find('tr');
+    this.$rowHeader = this.$tbodyRows.find('th').first();
 
     this.init();
   }
@@ -15,31 +23,41 @@ $(function(){
     init: function() {
       this.tableWidth = this.$table.outerWidth();
       this.wrapHeight = this.$wrap.outerHeight();
+      this.wrapWidth = this.$wrap.outerWidth();
       this.theadHeight = this.$thead.outerHeight();
+      this.columnWidth = this.$rowHeader.outerWidth();
+      this.columnBorderWidth = parseInt(this.$rowHeader.css('borderRightWidth'), 10);
+      this.headerBorderWidth = parseInt(this.$lastHeader.css('borderBottomWidth'), 10);
       this.initialPadding = parseInt(this.$lastHeader.css('paddingRight'), 10);
       this.scrollbarWidth = this.getScrollbarsWidth();
 
       this.initWrap();
-      this.initHead();
+      this.gumHead();
+      if(this.opts.gummyColumn) {
+        this.gumColumn();
+        this.createHeaderCorner();
+        this.$innerWrap.on('scroll', this.onInnerScroll.bind(this));
+      }
     },
     initWrap: function() {
       this.$table.wrap('<div class="gummy-inner-wrap"></div>');
       this.$innerWrap = this.$table.parent();
     },
-    initHead: function() {
-      var topOffset = this.$thead.offset().top;
+    gumHead: function() {
+      this.$gummyHead = $('<table class="gummy-head"></table>');
+      this.$gummyHead.append('<thead></thead>');
 
-      this.$stickyHead = $('<table class="gummy-head"></table>');
-      this.$stickyHead.html(this.$thead.html());
+      //@todo get the classes too
+      this.$gummyHead.find('thead').html(this.$thead.html());
 
       if(this.scrollbarWidth > 0) {
-        this.$stickyHead.find('tr').append($('<th class="scrollbarSpacer"></th>'));
-        this.$stickyHead.find('.scrollbarSpacer').css({
+        this.$gummyHead.find('tr').append($('<th class="gummy-spacer"></th>'));
+        this.$gummyHead.find('.gummy-spacer').css({
           width: this.scrollbarWidth + 'px'
         })
       }
 
-      this.$wrap.append(this.$stickyHead);
+      this.$wrap.append(this.$gummyHead);
 
       this.$innerWrap.css({
         height: this.wrapHeight - this.theadHeight,
@@ -50,6 +68,60 @@ $(function(){
         marginTop: -this.theadHeight
       })
 
+    },
+    gumColumn: function() {
+      var self = this;
+
+      this.$gummyColumn = $('<table class="gummy-column"></table>');
+
+      this.$tbodyRows.each(function(i, el) {
+        var $row = $(el).clone();
+        $row.find('td').remove();
+        self.$gummyColumn.append($row);
+      })
+
+      this.$gummyColumn.css({
+        top: this.theadHeight,
+        width: (this.columnWidth + this.columnBorderWidth) + 'px'
+      })
+
+      this.$wrap.append(this.$gummyColumn);
+
+      this.$gummyHead.find('th').first().css({
+        width: this.columnWidth + 'px'
+      })
+
+      this.$innerWrap.css({
+        width: this.wrapWidth - this.columnWidth,
+        marginLeft: this.columnWidth
+      })
+
+      this.$table.css({
+        marginLeft: -this.columnWidth
+      })
+
+    },
+    createHeaderCorner: function() {
+      var $corner = $('<div class="gummy-corner"></div>');
+
+      $corner.css({
+        height: this.theadHeight + this.headerBorderWidth,
+        width: this.columnWidth + this.columnBorderWidth
+      })
+
+      this.$wrap.append($corner);
+    },
+    onInnerScroll: function() {
+      var topOffset = -this.$innerWrap.scrollTop(),
+          leftOffset = -this.$innerWrap.scrollLeft();
+
+      this.$gummyColumn.css({
+        top: (topOffset + this.theadHeight) + 'px'
+      })
+
+      this.$gummyHead.css({
+        left: leftOffset + 'px'
+      })
     },
     // Scrollbar width detection snippet from David Walsh
     // http://davidwalsh.name/detect-scrollbar-width
@@ -66,6 +138,7 @@ $(function(){
     }
   }
 
-  new Gummy($('.gummy-wrap'));
-
+  new Gummy($('.gummy-wrap'), {
+    gummyColumn: true
+  });
 })
