@@ -28,7 +28,10 @@ $(function(){
       this.columnWidth = this.$rowHeader.outerWidth();
       this.columnBorderWidth = parseInt(this.$rowHeader.css('borderRightWidth'), 10);
       this.headerBorderWidth = parseInt(this.$lastHeader.css('borderBottomWidth'), 10);
-      this.initialPadding = parseInt(this.$lastHeader.css('paddingRight'), 10);
+      this.initialPadding = {
+       left: parseInt(this.$lastHeader.css('paddingLeft'), 10),
+       right: parseInt(this.$lastHeader.css('paddingRight'), 10)
+      }
       this.scrollbarWidth = this.getScrollbarsWidth();
 
       this.initWrap();
@@ -46,6 +49,10 @@ $(function(){
     gumHead: function() {
       this.$gummyHead = $('<table class="gummy-head"></table>');
       this.$gummyHead.append('<thead></thead>');
+
+      this.$gummyHead.css({
+        width: this.tableWidth
+      })
 
       //@todo get the classes too
       this.$gummyHead.find('thead').html(this.$thead.html());
@@ -87,9 +94,14 @@ $(function(){
 
       this.$wrap.append(this.$gummyColumn);
 
-      this.$gummyHead.find('th').first().css({
-        width: this.columnWidth + 'px'
+      var spacer = $('<div></div>').css({
+        width: this.columnWidth
+             - this.headerBorderWidth
+             - this.initialPadding.left
+             - this.initialPadding.right
+             + 'px'
       })
+      this.$gummyHead.find('th').first().append(spacer);
 
       this.$innerWrap.css({
         width: this.wrapWidth - this.columnWidth,

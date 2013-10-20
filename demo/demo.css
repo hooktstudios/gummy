@@ -18,13 +18,14 @@ table {
 td, th {
   border: 1px solid #ccc;
   padding: .5em;
-  min-width: 200px;
 }
 
 th {
   background-color: #eee;
   font-weight: bold;
 }
+
+thead th { white-space: nowrap; }
 
 .gummy-wrap {
   border-bottom: 1px solid #ccc;
