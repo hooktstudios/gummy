@@ -23,6 +23,18 @@ $(function(){
     init: function() {
       this.$wrap.addClass('gummy-wrap');
 
+      this.getInitialSizes();
+      this.initInnerWrap();
+
+      this.gumHead();
+
+      if(this.opts.gummyColumn) {
+        this.gumColumn();
+        this.createHeaderCorner();
+        this.$innerWrap.on('scroll', this.onInnerScroll.bind(this));
+      }
+    },
+    getInitialSizes: function() {
       this.tableWidth = this.$table.outerWidth();
       this.wrapHeight = this.$wrap.outerHeight();
       this.wrapWidth = this.$wrap.outerWidth();
@@ -35,16 +47,8 @@ $(function(){
        right: parseInt(this.$lastHeader.css('paddingRight'), 10)
       }
       this.scrollbarWidth = this.getScrollbarsWidth();
-
-      this.initWrap();
-      this.gumHead();
-      if(this.opts.gummyColumn) {
-        this.gumColumn();
-        this.createHeaderCorner();
-        this.$innerWrap.on('scroll', this.onInnerScroll.bind(this));
-      }
     },
-    initWrap: function() {
+    initInnerWrap: function() {
       this.$table.wrap('<div class="gummy-inner-wrap"></div>');
       this.$innerWrap = this.$table.parent();
     },
