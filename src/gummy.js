@@ -51,6 +51,8 @@ $(function(){
     initInnerWrap: function() {
       this.$table.wrap('<div class="gummy-inner-wrap"></div>');
       this.$innerWrap = this.$table.parent();
+
+      if(this.opts.gummyColumn) this.$innerWrap.addClass('gum-column');
     },
     gumHead: function() {
       this.$gummyHead = $('<table class="gummy-head"></table>');

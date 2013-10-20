@@ -4,9 +4,11 @@
 }
 
 .gummy-inner-wrap {
-  overflow: scroll;
+  overflow-y: scroll;
   position: relative;
 }
+
+.gummy-inner-wrap.gum-column { overflow-x: scroll; }
 
 .gummy-head {
   position: absolute;
