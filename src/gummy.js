@@ -29,7 +29,7 @@ Gummy.prototype = {
     if(this.opts.gummyColumn) {
       this.gumColumn();
       this.createHeaderCorner();
-      this.$innerWrap.on('scroll', this.onInnerScroll.bind(this));
+      this.$innerWrap.bind('scroll', this.onInnerScroll.bind(this));
     }
   },
   getInitialValues: function() {
