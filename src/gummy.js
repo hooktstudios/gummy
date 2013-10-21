@@ -22,7 +22,7 @@ Gummy.prototype = {
   init: function() {
     this.$wrap.addClass('gummy-wrap');
 
-    this.getInitialSizes();
+    this.getInitialValues();
     this.initInnerWrap();
     this.gumHead();
 
@@ -32,7 +32,7 @@ Gummy.prototype = {
       this.$innerWrap.on('scroll', this.onInnerScroll.bind(this));
     }
   },
-  getInitialSizes: function() {
+  getInitialValues: function() {
     this.tableWidth = this.$table.outerWidth();
     this.wrapHeight = this.$wrap.outerHeight();
     this.wrapWidth = this.$wrap.outerWidth();
@@ -45,6 +45,8 @@ Gummy.prototype = {
      right: parseInt(this.$lastHeader.css('paddingRight'), 10)
     }
     this.scrollbarWidth = this.getScrollbarsWidth();
+
+    this.tableClasses = this.$table.attr('class');
   },
   initInnerWrap: function() {
     this.$table.wrap('<div class="gummy-inner-wrap"></div>');
@@ -54,6 +56,7 @@ Gummy.prototype = {
   },
   gumHead: function() {
     this.$gummyHead = $('<table class="gummy-head"></table>');
+    this.$gummyHead.addClass(this.tableClasses);
     this.$gummyHead.append('<thead></thead>');
 
     this.$gummyHead.css({
@@ -104,6 +107,7 @@ Gummy.prototype = {
     $rows.find('td').remove();
 
     this.$gummyColumn = $('<table class="gummy-column"></table>');
+    this.$gummyColumn.addClass(this.tableClasses);
     this.$gummyColumn.append($rows);
 
     this.$gummyColumn.css({
