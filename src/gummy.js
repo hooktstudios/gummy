@@ -111,7 +111,7 @@ Gummy.prototype = {
     this.$gummyColumn.append($rows);
 
     this.$gummyColumn.css({
-      top: this.theadHeight,
+      top: this.theadHeight + this.headerBorderWidth,
       width: this.columnWidth + this.columnBorderWidth
     })
 
@@ -145,7 +145,7 @@ Gummy.prototype = {
         leftOffset = -this.$innerWrap.scrollLeft();
 
     this.$gummyColumn.css({
-      top: topOffset + this.theadHeight
+      top: topOffset + this.theadHeight + this.headerBorderWidth
     })
 
     this.$gummyHead.css({
