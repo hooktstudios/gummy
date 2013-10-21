@@ -8,7 +8,7 @@ function Gummy($wrap, options){
   this.opts = $.extend(this.defaults, options);
 
   this.$wrap = $wrap;
-  this.$table = $wrap.find('.gummy-table');
+  this.$table = $wrap.find('table');
   this.$thead = this.$table.find('thead');
   this.$tbody = this.$table.find('tbody');
   this.$lastHeader = this.$thead.find('th').last();
