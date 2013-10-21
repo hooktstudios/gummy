@@ -109,8 +109,8 @@ Gummy.prototype = {
 
     this.$gummyColumn = $('<table class="gummy-column"></table>');
     this.$gummyColumn.addClass(this.tableClasses);
-    this.$gummyColumn.append($rows);
-
+    this.$gummyColumn.append($('<tbody></tbody>'));
+    this.$gummyColumn.find('tbody').append($rows);
 
     this.$gummyColumn.css({
       top: this.theadHeight,
