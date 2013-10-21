@@ -13,7 +13,7 @@ left aligned headers column. This may be fixed in the future. Or not.
 
 ## To-do's and Notes
 
-- Write decent README (usage, credits, license, etc.)
+- Write decent README (usage, license, etc.)
 - What's the browser support?
 - Minimal API
   - Allow update on gummy head/column when table content changes
@@ -23,3 +23,9 @@ left aligned headers column. This may be fixed in the future. Or not.
 - Test performance with huge tables and improve accordingly
 - Tests?
 - Get rid/minimize jQuery dependency (can we?)
+
+## Credits
+
+![hooktstudios](http://hooktstudios.com/logo.png)
+
+Gummy.js is maintained and funded by [hooktstudios](http://github.com/hooktstudios).
