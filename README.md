@@ -13,7 +13,6 @@ left aligned headers column. This may be fixed in the future. Or not.
 
 ## To-do's and Notes
 
-- Refactor the whole thing
 - Write decent README (usage, credits, license, etc.)
 - What's the browser support?
 - Minimal API

@@ -60,17 +60,24 @@ Gummy.prototype = {
       width: this.tableWidth
     })
 
+    this.updateHeadContent();
+    this.$wrap.append(this.$gummyHead);
+    this.handleWrapTopOverflow();
+  },
+  updateHeadContent: function() {
     this.$gummyHead.find('thead').html(this.$thead.html());
 
     if(this.scrollbarWidth > 0) {
-      this.$gummyHead.find('tr').append($('<th class="gummy-spacer"></th>'));
-      this.$gummyHead.find('.gummy-spacer').css({
-        width: this.scrollbarWidth
-      })
+      var spacer = $('<th class="gummy-spacer"></th>');
+
+      spacer.css({
+       width: this.scrollbarWidth
+      });
+
+      this.$gummyHead.find('tr').append(spacer);
     }
-
-    this.$wrap.append(this.$gummyHead);
-
+  },
+  handleWrapTopOverflow: function() {
     this.$innerWrap.css({
       height: this.wrapHeight - this.theadHeight,
       marginTop: this.theadHeight
@@ -79,34 +86,8 @@ Gummy.prototype = {
     this.$table.css({
       marginTop: -this.theadHeight
     })
-
   },
-  gumColumn: function() {
-    var self = this;
-
-    this.$gummyColumn = $('<table class="gummy-column"></table>');
-
-    this.$tbodyRows.each(function(i, el) {
-      var $row = $(el).clone();
-      $row.find('td').remove();
-      self.$gummyColumn.append($row);
-    })
-
-    this.$gummyColumn.css({
-      top: this.theadHeight,
-      width: this.columnWidth + this.columnBorderWidth
-    })
-
-    this.$wrap.append(this.$gummyColumn);
-
-    var spacer = $('<div></div>').css({
-      width: this.columnWidth
-           - this.headerBorderWidth
-           - this.initialPadding.left
-           - this.initialPadding.right
-    })
-    this.$gummyHead.find('th').first().append(spacer);
-
+  handleWrapLeftOverflow: function() {
     this.$innerWrap.css({
       width: this.wrapWidth - this.columnWidth,
       marginLeft: this.columnWidth
@@ -115,7 +96,35 @@ Gummy.prototype = {
     this.$table.css({
       marginLeft: -this.columnWidth
     })
+  },
+  gumColumn: function() {
+    var self = this,
+        $rows = this.$tbodyRows.clone();
 
+    $rows.find('td').remove();
+
+    this.$gummyColumn = $('<table class="gummy-column"></table>');
+    this.$gummyColumn.append($rows);
+
+    this.$gummyColumn.css({
+      top: this.theadHeight,
+      width: this.columnWidth + this.columnBorderWidth
+    })
+
+    this.$wrap.append(this.$gummyColumn);
+
+    this.createHeaderSpacer();
+    this.handleWrapLeftOverflow();
+  },
+  createHeaderSpacer: function() {
+    var spacer = $('<div></div>').css({
+      width: this.columnWidth
+           - this.headerBorderWidth
+           - this.initialPadding.left
+           - this.initialPadding.right
+    })
+
+    this.$gummyHead.find('th').first().append(spacer);
   },
   createHeaderCorner: function() {
     var $corner = $('<div class="gummy-corner"></div>');
