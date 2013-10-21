@@ -13,7 +13,7 @@ left aligned headers column. This may be fixed in the future. Or not.
 
 ## To-do's and Notes
 
-- Write decent README (usage, license, etc.)
+- Write decent README (usage, etc.)
 - What's the browser support?
 - Minimal API
   - Allow update on gummy head/column when table content changes
