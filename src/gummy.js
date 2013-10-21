@@ -37,6 +37,7 @@ Gummy.prototype = {
     this.wrapHeight = this.$wrap.outerHeight();
     this.wrapWidth = this.$wrap.outerWidth();
     this.theadHeight = this.$thead.outerHeight();
+    this.thHeight = this.$lastHeader.outerHeight();
     this.columnWidth = this.$rowHeader.outerWidth();
     this.columnBorderWidth = parseInt(this.$rowHeader.css('borderRightWidth'), 10);
     this.headerBorderWidth = parseInt(this.$lastHeader.css('borderBottomWidth'), 10);
@@ -110,8 +111,9 @@ Gummy.prototype = {
     this.$gummyColumn.addClass(this.tableClasses);
     this.$gummyColumn.append($rows);
 
+
     this.$gummyColumn.css({
-      top: this.theadHeight + this.headerBorderWidth,
+      top: this.theadHeight,
       width: this.columnWidth + this.columnBorderWidth
     })
 
@@ -131,11 +133,18 @@ Gummy.prototype = {
     this.$gummyHead.find('th').first().append(spacer);
   },
   createHeaderCorner: function() {
-    var $corner = $('<div class="gummy-corner"></div>');
+    var $corner = $('<table class="gummy-corner"></table>');
+    $corner.addClass(this.tableClasses);
+    $corner.append('<thead></thead>');
+
+    $corner.find('thead').append(this.$thead.find('th').first().clone(true, true));
 
     $corner.css({
-      height: this.theadHeight + this.headerBorderWidth,
       width: this.columnWidth + this.columnBorderWidth
+    })
+
+    $corner.find('th').css({
+      height: this.thHeight
     })
 
     this.$wrap.append($corner);
@@ -145,7 +154,7 @@ Gummy.prototype = {
         leftOffset = -this.$innerWrap.scrollLeft();
 
     this.$gummyColumn.css({
-      top: topOffset + this.theadHeight + this.headerBorderWidth
+      top: topOffset + this.theadHeight
     })
 
     this.$gummyHead.css({
