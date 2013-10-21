@@ -5,6 +5,10 @@ plugins, it's not meant to be relative to the whole window, but to a wrapper
 inside the page. This essentially mean you can use it for smaller tables inside
 your layout as well as full window tables.
 
+## Demo
+
+[→ here](http://raw.github.com.everydayimmirror.in/hooktstudios/gummy/master/demo/index.html)
+
 ## Caveats
 
 As of now, table headers **must** be of equal or greater width than table cells
