@@ -133,21 +133,21 @@ Gummy.prototype = {
     this.$gummyHead.find('th').first().append(spacer);
   },
   createHeaderCorner: function() {
-    var $corner = $('<table class="gummy-corner"></table>');
-    $corner.addClass(this.tableClasses);
-    $corner.append('<thead></thead>');
+    this.$corner = $('<table class="gummy-corner"></table>');
+    this.$corner.addClass(this.tableClasses);
+    this.$corner.append('<thead></thead>');
 
-    $corner.find('thead').append(this.$thead.find('th').first().clone(true, true));
+    this.$corner.find('thead').append(this.$thead.find('th').first().clone(true, true));
 
-    $corner.css({
+    this.$corner.css({
       width: this.columnWidth + this.columnBorderWidth
     })
 
-    $corner.find('th').css({
+    this.$corner.find('th').css({
       height: this.thHeight
     })
 
-    this.$wrap.append($corner);
+    this.$wrap.append(this.$corner);
   },
   onInnerScroll: function() {
     var topOffset = -this.$innerWrap.scrollTop(),
