@@ -2,7 +2,8 @@ function Gummy($wrap, options){
   if(!$wrap) return;
 
   this.defaults = {
-    gummyColumn: false
+    gummyColumn: false,
+    removeHeaderAttributes: []
   }
 
   this.opts = $.extend(this.defaults, options);
@@ -30,6 +31,10 @@ Gummy.prototype = {
       this.gumColumn();
       this.createHeaderCorner();
       this.$innerWrap.bind('scroll', this.onInnerScroll.bind(this));
+    }
+
+    if(this.opts.removeHeaderAttributes) {
+      this.removeHeaderAttributes(this.opts.removeHeaderAttributes);
     }
   },
   getInitialValues: function() {
@@ -159,6 +164,12 @@ Gummy.prototype = {
 
     this.$gummyHead.css({
       left: leftOffset
+    })
+  },
+  removeHeaderAttributes: function(attributes) {
+    $.each(attributes, function(i, value) {
+      this.$thead.find('th [' + value + ']').removeAttr(value);
+      this.$tbody.find('th [' + value + ']').removeAttr(value);
     })
   },
   // Scrollbar width detection snippet from David Walsh
