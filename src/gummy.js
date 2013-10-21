@@ -60,7 +60,6 @@ Gummy.prototype = {
       width: this.tableWidth
     })
 
-    //@todo get the classes too
     this.$gummyHead.find('thead').html(this.$thead.html());
 
     if(this.scrollbarWidth > 0) {
