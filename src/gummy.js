@@ -23,8 +23,8 @@ Gummy.prototype = {
   init: function() {
     this.$wrap.addClass('gummy-wrap');
 
-    this.getInitialValues();
     this.initInnerWrap();
+    this.getInitialValues();
     this.gumHead();
 
     if(this.opts.gummyColumn) {
