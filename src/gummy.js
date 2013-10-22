@@ -174,6 +174,13 @@ Gummy.prototype = {
       self.$tbody.find('th [' + value + ']').removeAttr(value);
     })
   },
+  destroy: function() {
+    this.$innerWrap.unbind('scroll');
+    this.$table.unwrap();
+    this.$gummyHead.remove();
+    this.$gummyColumn.remove();
+    this.$corner.remove();
+  },
   // Scrollbar width detection snippet from David Walsh
   // http://davidwalsh.name/detect-scrollbar-width
   getScrollbarsWidth: function() {
