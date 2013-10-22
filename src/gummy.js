@@ -167,9 +167,11 @@ Gummy.prototype = {
     })
   },
   removeHeaderAttributes: function(attributes) {
+    var self = this;
+
     $.each(attributes, function(i, value) {
-      this.$thead.find('th [' + value + ']').removeAttr(value);
-      this.$tbody.find('th [' + value + ']').removeAttr(value);
+      self.$thead.find('th [' + value + ']').removeAttr(value);
+      self.$tbody.find('th [' + value + ']').removeAttr(value);
     })
   },
   // Scrollbar width detection snippet from David Walsh
