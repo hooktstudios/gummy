@@ -66,7 +66,7 @@ Gummy.prototype = {
     this.$gummyHead.append('<thead></thead>');
 
     this.$gummyHead.css({
-      width: this.tableWidth
+      width: this.tableWidth + this.scrollbarWidth
     })
 
     this.updateHeadContent();
