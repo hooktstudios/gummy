@@ -9,7 +9,33 @@ your layout as well as full window tables.
 
 [→ here](http://raw.github.com.everydayimmirror.in/hooktstudios/gummy/master/demo/index.html)
 
-## Caveats
+## Usage
+
+1. If it's not there already, include jQuery.
+2. Include `gummy.css` and `gummy.js`.
+3. Wrap your table in a block element with a fixed height or max-height if you
+   want to scroll inside your table vertically.
+4. Make sure your table has a `thead` and a `tbody` tag. These will be used to
+   select the different table parts later on.
+5. Initialize the plugin by passing your wrapping element as an argument.
+
+**HTML**
+
+````html
+<div class="wrapper">
+  <table>
+    <thead>[...]</thead>
+    <tbody>[...]</tbody>
+  </table>
+</div>
+````
+**JavaScript**
+
+````javascript
+var gummyTable = new Gummy($('.wrapper'));
+````
+
+## Known shortcomings
 
 As of now, table headers **must** be of equal or greater width than table cells
 for the plugin to actually work. Same goes for the headers height when using a
@@ -17,13 +43,11 @@ left aligned headers column. This may be fixed in the future. Or not.
 
 ## To-do's and Notes
 
-- Write decent README (usage, etc.)
+- Write decent README (options, public methods, etc.)
 - What's the browser support?
 - Minimal API
   - Allow update on gummy head/column when table content changes
-  - Have a way to remove the whole thing
 - Find a sane way to deal with table where cells are larger than headers
-- Deal with original elements classes when cloning
 - Test performance with huge tables and improve accordingly
 - Tests?
 - Get rid/minimize jQuery dependency (can we?)
