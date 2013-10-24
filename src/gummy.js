@@ -29,18 +29,18 @@ Gummy.prototype = {
     this.getInitialValues();
     this.gumHead();
 
-    if(this.opts.gummyColumn) {
+    if(this.opts.gummyColumn && this.tableWidth > this.wrapWidth) {
       this.gumColumn();
       this.createHeaderCorner();
       this.$innerWrap.bind('scroll', this.onInnerScroll.bind(this));
+      if(this.opts.forceHeadersHeight) this.forceHeadersHeight();
     }
+
+    if(this.opts.forceHeadersWidth)  this.forceHeadersWidth();
 
     if(this.opts.removeHeaderAttributes) {
       this.removeHeaderAttributes(this.opts.removeHeaderAttributes);
     }
-
-    if(this.opts.forceHeadersWidth)  this.forceHeadersWidth();
-    if(this.opts.forceHeadersHeight) this.forceHeadersHeight();
   },
   getInitialValues: function() {
     this.tableWidth = this.$table.outerWidth();
@@ -191,8 +191,6 @@ Gummy.prototype = {
     });
   },
   forceHeadersHeight: function(){
-    if(!this.opts.gummyColumn) return;
-
     var $headerCells = this.$tbody.find('th');
 
     this.$gummyColumn.find('th').each(function(i, el){
