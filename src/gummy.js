@@ -2,6 +2,8 @@ function Gummy($wrap, options){
   if(!$wrap) return;
 
   this.defaults = {
+    forceHeadersHeight: false,
+    forceHeadersWidth: false,
     gummyColumn: false,
     removeHeaderAttributes: []
   }
@@ -36,6 +38,9 @@ Gummy.prototype = {
     if(this.opts.removeHeaderAttributes) {
       this.removeHeaderAttributes(this.opts.removeHeaderAttributes);
     }
+
+    if(this.opts.forceHeadersWidth)  this.forceHeadersWidth();
+    if(this.opts.forceHeadersHeight) this.forceHeadersHeight();
   },
   getInitialValues: function() {
     this.tableWidth = this.$table.outerWidth();
@@ -173,6 +178,30 @@ Gummy.prototype = {
       self.$thead.find('th [' + value + ']').removeAttr(value);
       self.$tbody.find('th [' + value + ']').removeAttr(value);
     })
+  },
+  forceHeadersWidth: function(){
+    var $headerCells = this.$thead.find('th');
+
+    this.$gummyHead.find('th').not('.gummy-spacer').each(function(i, el){
+      var $currentCell = $(el),
+          currentWidth = $currentCell.outerWidth(),
+          headerWidth = $headerCells.eq(i).outerWidth();
+
+      if(currentWidth < headerWidth) $currentCell.css('width', headerWidth);
+    });
+  },
+  forceHeadersHeight: function(){
+    if(!this.opts.gummyColumn) return;
+
+    var $headerCells = this.$tbody.find('th');
+
+    this.$gummyColumn.find('th').each(function(i, el){
+      var $currentCell = $(el),
+          currentHeight = $currentCell.outerHeight(),
+          headerHeight = $headerCells.eq(i).outerHeight();
+
+      if(currentHeight < headerHeight) $currentCell.css('height', headerHeight);
+    });
   },
   destroy: function() {
     this.$innerWrap.unbind('scroll');
