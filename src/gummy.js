@@ -47,8 +47,8 @@ Gummy.prototype = {
     this.columnBorderWidth = parseInt(this.$rowHeader.css('borderRightWidth'), 10);
     this.headerBorderWidth = parseInt(this.$lastHeader.css('borderBottomWidth'), 10);
     this.initialPadding = {
-     left: parseInt(this.$lastHeader.css('paddingLeft'), 10),
-     right: parseInt(this.$lastHeader.css('paddingRight'), 10)
+      left: parseInt(this.$lastHeader.css('paddingLeft'), 10),
+      right: parseInt(this.$lastHeader.css('paddingRight'), 10)
     }
     this.scrollbarWidth = this.getScrollbarsWidth();
 
