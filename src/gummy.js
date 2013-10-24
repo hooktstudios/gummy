@@ -129,7 +129,7 @@ Gummy.prototype = {
 
     this.$wrap.append(this.$gummyColumn);
 
-    this.createHeaderSpacer();
+    if(this.$thead.find('th').first().is(':empty')) this.createHeaderSpacer();
     this.handleWrapLeftOverflow();
   },
   createHeaderSpacer: function() {
