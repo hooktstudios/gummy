@@ -205,8 +205,11 @@ Gummy.prototype = {
     this.$innerWrap.unbind('scroll');
     this.$table.unwrap();
     this.$gummyHead.remove();
-    this.$gummyColumn.remove();
-    this.$corner.remove();
+
+    if(this.$gummyColumn) {
+      this.$gummyColumn.remove();
+      this.$corner.remove();
+    }
   },
   // Scrollbar width detection snippet from David Walsh
   // http://davidwalsh.name/detect-scrollbar-width
