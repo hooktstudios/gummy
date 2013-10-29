@@ -176,7 +176,9 @@ Gummy.prototype = {
 
     $.each(attributes, function(i, value) {
       self.$thead.find('th [' + value + ']').removeAttr(value);
-      self.$tbody.find('th [' + value + ']').removeAttr(value);
+      if(this.$gummyColumn) {
+        self.$tbody.find('th [' + value + ']').removeAttr(value);
+      }
     })
   },
   forceHeadersWidth: function(){
