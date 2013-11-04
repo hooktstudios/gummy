@@ -176,7 +176,7 @@ Gummy.prototype = {
 
     $.each(attributes, function(i, value) {
       self.$thead.find('th [' + value + ']').removeAttr(value);
-      if(this.$gummyColumn) {
+      if(self.$gummyColumn) {
         self.$tbody.find('th [' + value + ']').removeAttr(value);
       }
     })
